@@ -7,7 +7,7 @@
 //#ifdef __cplusplus
 //extern "C" {
 //#endif // __cplusplus
-Tank* getTank(int x, int y, const char* name);
+Tank* getTank(int x, int y, enum MYKEYS direction, const char* name);
 //#ifdef __cplusplus
 //}
 //#endif // __cplusplus

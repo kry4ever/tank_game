@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 
-	extern bool draw(float, float);
-	startLoop(&timer, display, draw);
+
+	startLoop(&timer, display);
 	return 0;
 }

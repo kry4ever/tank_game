@@ -1,10 +1,11 @@
 #include "tank_factory.h"
 
 static Tank* mCache = NULL;
-Tank* getTank(int x, int y, const char* name) {
+Tank* getTank(int x, int y, enum MYKEYS direction, const char* name) {
 	if (mCache != NULL) {
 		mCache->x = x;
 		mCache -> y = y;
+		mCache->direction = direction;
 		return mCache;
 	}
 
@@ -19,6 +20,7 @@ Tank* getTank(int x, int y, const char* name) {
 	tank->image = bitmap;
 	tank->x = x;
 	tank->y = y;
+	tank->direction = direction;
 	mCache = tank;
 	return tank;
 }

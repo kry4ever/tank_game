@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-	bool draw(float x, float y) {
-		printf("x is %f, y si %f\n", x, y);
-		Tank* tank = (Tank*)getTank(x, y, "../res/tank.bmp");
+	bool draw(float x, float y, enum MYKEYS direction) {
+		//		printf("x is %f, y si %f\n", x, y);
+		Tank* tank = (Tank*)getTank(x, y, direction, "../res/tank.bmp");
 		drawTank(tank);
 		return true;
 	}
