@@ -33,26 +33,26 @@ void drawTank(Tank* tank)
 		break;
 	}
 
-	if (dx < 0) {
+	if (tank->x < 0) {
 		dx = 0;
 	}
 
 	extern int width;
-	if (dx > width) {
-		dx = width;
+	if (tank->x + tank->size > width) {
+		dx = width - tank->size;
 	}
 
-	if (dy < 0) {
+	if (tank->y < 0) {
 		dy = 0;
 	}
 
 	extern int height;
-	if (dy > height) {
+	if (tank->y + tank->size > height) {
 		dy = height;
 	}
 
 
-	printf("x is %f, y is %f, size is %f\n", dx, dy, tank->size);
+	printf("x is %f, y is %f, size is %f\n", tank->x, tank->y, tank->size);
 	al_draw_scaled_rotated_bitmap(tank->image,
 		0,
 		0,
