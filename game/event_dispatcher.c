@@ -7,7 +7,7 @@ bool key[4] = { false, false, false, false };
 
 float x = 0;
 float y = 0;
-enum MYKEYS currentDirection = KEY_UP;
+enum MYKEYS currentDirection = KEY_DOWN;
 
 void dispatchKeyDown(int keyCode)
 {

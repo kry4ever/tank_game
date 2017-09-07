@@ -1,8 +1,7 @@
 #include "framework.h"
 
-
-int width = 640;
-int height = 480;
+const int width = 640;
+const int height = 480;
 
 bool init(ALLEGRO_DISPLAY **display) {
   //int width = 640;
