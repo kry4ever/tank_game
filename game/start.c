@@ -7,10 +7,10 @@
 #include "tank_factory.h"
 
 
-
+ALLEGRO_DISPLAY *display = NULL;
 int main(int argc, char **argv) {
 
-	ALLEGRO_DISPLAY *display = NULL;
+
 	ALLEGRO_TIMER *timer = NULL;
 	if (!init(&display)) {
 		fprintf(stderr, "failed to init");

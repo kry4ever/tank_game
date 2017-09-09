@@ -8,7 +8,7 @@ bool key[4] = { false, false, false, false };
 float x = 0;
 float y = 0;
 enum MYKEYS currentDirection = KEY_UP;
-
+extern Tank *mCache;
 void dispatchKeyDown(int keyCode)
 {
 	switch (keyCode) {
@@ -30,6 +30,10 @@ void dispatchKeyDown(int keyCode)
 	case ALLEGRO_KEY_RIGHT:
 		key[KEY_RIGHT] = true;
 		currentDirection = KEY_RIGHT;
+		break;
+
+	case ALLEGRO_KEY_SPACE:
+		mCache->point->isShoting = true;
 		break;
 	}
 }

@@ -1,16 +1,15 @@
 #pragma once
 
 #include "allegro5/allegro.h"
-
-enum MYKEYS {
-	KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT
-};
+#include "point.h"
+#include "direction.h"
 
 typedef struct Tank{
 	ALLEGRO_BITMAP *image;
 	float x, y;
 	float size;
 	enum MYKEYS direction;
+	Point *point;
 }Tank;
 
 

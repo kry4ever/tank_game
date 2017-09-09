@@ -9,6 +9,10 @@ extern "C" {
 		//		printf("x is %f, y si %f\n", x, y);
 		Tank* tank = (Tank*)getTank(x, y, direction, "../res/tank.bmp");
 		drawTank(tank);
+		if(tank->point->isShoting){
+			drawPoint(tank->point);
+		}
+
 		return true;
 	}
 
