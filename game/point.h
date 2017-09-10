@@ -8,6 +8,7 @@ typedef struct _Point{
   ALLEGRO_BITMAP *image;
   enum MYKEYS direction;
   bool isShoting;
+  //Tank *belong;
 }Point;
 
 

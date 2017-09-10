@@ -4,15 +4,16 @@
 #include "point.h"
 #include "direction.h"
 
-typedef struct Tank{
+struct _Tank{
 	int id;
 	ALLEGRO_BITMAP *image;
 	float x, y;
 	float size;
 	enum MYKEYS direction;
 	Point *point;
-}Tank;
+};
 
+typedef struct _Tank Tank;
 
 #ifdef __cplusplus
 extern "C" {

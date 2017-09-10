@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 	enum MYKEYS getRandomDirection();
+	bool shot();
 	//int enemySize = 10;
 	bool draw(float x, float y, enum MYKEYS direction) {
 		//		printf("x is %f, y si %f\n", x, y);
@@ -34,8 +35,19 @@ extern "C" {
 				   tank->x >= (width-tank->size) ||
 				   tank->y <= 0 ||
 				   tank->y >= (height-tank->size)){
-					changePosition(tank, getRandomDirection());
+				   changePosition(tank, getRandomDirection());
 				}
+
+				if(!tank->point->isShoting){
+					printf("here %d\n", i);
+					tank->point->isShoting = true;
+				}
+
+				if(tank->point->isShoting){
+					drawPoint(tank->point);
+				}
+
+
 		}
 		al_flip_display();
 		return true;
@@ -52,6 +64,10 @@ extern "C" {
 
 	enum MYKEYS getRandomDirection(){
 			return rand()%KEY_ALL;
+	}
+
+	bool shot(){
+		return rand()%2 == 0;
 	}
 
 #ifdef __cplusplus
