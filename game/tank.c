@@ -1,5 +1,6 @@
 #include "tank.h"
 #include "stdio.h"
+#include "global.h"
 
 const float PI = 3.1415926f;
 const float scaleFactor = 0.1f;
@@ -13,7 +14,7 @@ void drawTank(Tank* tank)
 		tank->x = 0;
 	}
 
-	extern int width;
+	//extern int width;
 	if(tank->x > width-tank->size){
 		tank->x = width -tank->size;
 	}
@@ -22,7 +23,7 @@ void drawTank(Tank* tank)
 		tank->y = 0;
 	}
 
-	extern int height;
+	//extern int height;
 	if(tank->y > height - tank->size){
 		tank->y = height - tank->size;
 	}
@@ -62,5 +63,44 @@ void drawTank(Tank* tank)
 		scaleFactor,
 		angle * PI / 180,
 		0);
-	al_flip_display();
+}
+
+
+void moveTo(Tank* tank, float x, float y){
+	tank->x = x;
+	tank->y = y;
+}
+
+void movePointTo(Tank* tank, float x, float y){
+	if(!tank->point->isShoting){
+		tank->point->x = x + tank->size/2 - pointSize/2;
+		tank->point->y = y + tank->size/2 - pointSize/2;
+	}
+}
+void changePosition(Tank* tank, enum MYKEYS direction){
+	tank->direction = direction;
+	if(!tank->point->isShoting){
+		tank->point->direction = direction;
+	}
+}
+
+void move(Tank* tank, float speed){
+	switch(tank->direction){
+	case KEY_DOWN:
+		tank->y += speed;
+		break;
+
+	case KEY_UP:
+		tank->y -= speed;
+		break;
+
+	case KEY_LEFT:
+		tank->x -= speed;
+		break;
+
+	case KEY_RIGHT:
+		tank->x += speed;
+		break;
+
+	}
 }

@@ -1,20 +1,18 @@
 #include "tank_factory.h"
+#include "global.h"
 
-Tank* mCache = NULL;
+//extern int enemySize;
+Tank *mCache[enemySize];
 extern float scaleFactor;
-float pointSize = 6;
-Tank* getTank(int x, int y, enum MYKEYS direction, const char* name) {
+//float pointSize = 6;
+Tank* getTank(int id, int x, int y, enum MYKEYS direction, const char* name) {
+	//printf("addr is %p\n", mCache);
 	if (mCache != NULL) {
-		mCache->x = x;
-		mCache -> y = y;
-		mCache->direction = direction;
-
-		if(!mCache->point->isShoting){
-			mCache->point->x = x + mCache->size/2 - pointSize/2;
-			mCache->point->y = y + mCache->size/2 - pointSize/2;
-			mCache->point->direction = direction;
+		if(mCache[id] != NULL){
+			return mCache[id];
 		}
-		return mCache;
+	}else{
+		//mCache = (Tank*)malloc(sizeof(Tank*) * (enemySize+1));
 	}
 
 	ALLEGRO_BITMAP *bitmap = al_load_bitmap(name);
@@ -44,6 +42,6 @@ Tank* getTank(int x, int y, enum MYKEYS direction, const char* name) {
 	extern ALLEGRO_DISPLAY *display;
 	al_set_target_bitmap(al_get_backbuffer(display));
 
-	mCache = tank;
+	mCache[id] = tank;
 	return tank;
 }

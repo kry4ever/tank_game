@@ -2,6 +2,7 @@
 #include <allegro5/allegro.h>
 #include "event_dispatcher.h"
 #include "tank.h"
+#include "global.h"
 
 bool key[4] = { false, false, false, false };
 
@@ -59,7 +60,7 @@ void dispatchKeyUp(int keyCode)
 	}
 }
 
-extern int width,height;
+//extern int width,height;
 void dispatchTimer()
 {
 	if (key[KEY_UP]) {
