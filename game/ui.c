@@ -13,17 +13,19 @@ extern "C" {
 
 	enum MYKEYS getRandomDirection();
 	bool shot();
+	bool inside(Point* point, Tank *tank);
 	int getRandomPosition(int max);
 	//int enemySize = 10;
+	Tank *enemys[enemySize];
 	bool draw(float x, float y, enum MYKEYS direction) {
 		//		printf("x is %f, y si %f\n", x, y);
-		Tank* tank = (Tank*)getTank(0, x, y, direction, "../res/tank.bmp");
-		moveTo(tank, x, y);
-		movePointTo(tank, x, y);
-		changePosition(tank, direction);
-		drawTank(tank, true);
-		if(tank->point->isShoting){
-			drawPoint(tank->point);
+		Tank* self = (Tank*)getTank(0, x, y, direction, "../res/tank.bmp");
+		moveTo(self, x, y);
+		movePointTo(self, x, y);
+		changePosition(self, direction);
+		drawTank(self, true);
+		if(self->point->isShoting){
+			drawPoint(self->point);
 		}
 
 
@@ -32,7 +34,7 @@ extern "C" {
 		for(i = 1; i < enemySize; i++){
 				Tank* tank = (Tank*)getTank(i, getRandomPosition(width), getRandomPosition(height), getRandomDirection(), "../res/tank.bmp");
 				move(tank, 1);
-				drawTank(tank, false);
+
 				if(tank->x <= 0 ||
 				   tank->x >= (width-tank->size) ||
 				   tank->y <= 0 ||
@@ -48,6 +50,11 @@ extern "C" {
 					drawPoint(tank->point);
 				}
 
+				if (inside(self->point, tank)) {
+					printf("i hit %d\n", tank->id);
+				}
+
+				drawTank(tank, false);
 
 		}
 		al_flip_display();
@@ -69,6 +76,10 @@ extern "C" {
 
 	bool shot(){
 		return rand()%2 == 0;
+	}
+
+	bool inside(Point* point, Tank *tank) {
+		return point->x > tank->x && point->x < tank->x + tank->size && point->y > tank->y && point->y < tank->y + tank->size;
 	}
 
 #ifdef __cplusplus

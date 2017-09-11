@@ -26,6 +26,7 @@ Tank* getTank(int id, int x, int y, enum MYKEYS direction, const char* name) {
 	Tank* tank = (Tank*)malloc(sizeof(Tank));
 
 	tank->image = bitmap;
+	tank->id = id;
 	tank->x = x;
 	tank->y = y;
 	float size = al_get_bitmap_width(bitmap) > al_get_bitmap_height(bitmap) ? al_get_bitmap_width(bitmap) : al_get_bitmap_height(bitmap);
