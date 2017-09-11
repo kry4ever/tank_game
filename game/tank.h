@@ -1,8 +1,8 @@
 #pragma once
 
 #include "allegro5/allegro.h"
-#include "point.h"
 #include "direction.h"
+#include <stdbool.h>
 
 struct _Tank{
 	int id;
@@ -10,7 +10,7 @@ struct _Tank{
 	float x, y;
 	float size;
 	enum MYKEYS direction;
-	Point *point;
+	struct _Point *point;
 };
 
 typedef struct _Tank Tank;
@@ -19,7 +19,7 @@ typedef struct _Tank Tank;
 extern "C" {
 #endif
 
-	void drawTank(Tank* tank);
+	void drawTank(Tank* tank, bool self);
 	void moveTo(Tank* tank, float x, float y);
 	void movePointTo(Tank* tank, float x, float y);
 	void changePosition(Tank* tank, enum MYKEYS direction);

@@ -3,6 +3,7 @@
 #include "event_dispatcher.h"
 #include "tank.h"
 #include "global.h"
+#include "point.h"
 
 bool key[4] = { false, false, false, false };
 

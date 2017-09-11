@@ -3,6 +3,7 @@
 #include "global.h"
 #include <stdlib.h>
 #include <time.h>
+#include "point.h"
 #include "direction.h"
 
 
@@ -12,6 +13,7 @@ extern "C" {
 
 	enum MYKEYS getRandomDirection();
 	bool shot();
+	int getRandomPosition(int max);
 	//int enemySize = 10;
 	bool draw(float x, float y, enum MYKEYS direction) {
 		//		printf("x is %f, y si %f\n", x, y);
@@ -19,7 +21,7 @@ extern "C" {
 		moveTo(tank, x, y);
 		movePointTo(tank, x, y);
 		changePosition(tank, direction);
-		drawTank(tank);
+		drawTank(tank, true);
 		if(tank->point->isShoting){
 			drawPoint(tank->point);
 		}
@@ -30,7 +32,7 @@ extern "C" {
 		for(i = 1; i < enemySize; i++){
 				Tank* tank = (Tank*)getTank(i, getRandomPosition(width), getRandomPosition(height), getRandomDirection(), "../res/tank.bmp");
 				move(tank, 1);
-				drawTank(tank);
+				drawTank(tank, false);
 				if(tank->x <= 0 ||
 				   tank->x >= (width-tank->size) ||
 				   tank->y <= 0 ||
@@ -39,7 +41,6 @@ extern "C" {
 				}
 
 				if(!tank->point->isShoting){
-					printf("here %d\n", i);
 					tank->point->isShoting = true;
 				}
 

@@ -1,5 +1,6 @@
 #include "tank_factory.h"
 #include "global.h"
+#include "point.h"
 
 //extern int enemySize;
 Tank *mCache[enemySize];
@@ -36,6 +37,7 @@ Tank* getTank(int id, int x, int y, enum MYKEYS direction, const char* name) {
 	tank->point->y = tank->y + tank->size/2 - pointSize/2;
 	tank->point->direction = tank->direction;
 	tank->point->isShoting = false;
+	tank->point->belong = tank;
 
 	al_set_target_bitmap(tank->point->image);
 	al_clear_to_color(al_map_rgb(255, 255, 255));

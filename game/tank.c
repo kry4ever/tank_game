@@ -1,10 +1,11 @@
 #include "tank.h"
 #include "stdio.h"
 #include "global.h"
+#include "point.h"
 
 const float PI = 3.1415926f;
 const float scaleFactor = 0.1f;
-void drawTank(Tank* tank)
+void drawTank(Tank* tank, bool self)
 {
 	assert(tank != NULL);
 	int bitmapWidth = al_get_bitmap_width(tank->image);
@@ -53,16 +54,30 @@ void drawTank(Tank* tank)
 		break;
 	}
 
-	//	printf("x is %f, y is %f, size is %f\n", tank->x, tank->y, tank->size);
-	al_draw_scaled_rotated_bitmap(tank->image,
-		0,
-		0,
-		dx,
-		dy,
-		scaleFactor,
-		scaleFactor,
-		angle * PI / 180,
-		0);
+	if (self) {
+		al_draw_scaled_rotated_bitmap(tank->image,
+			0,
+			0,
+			dx,
+			dy,
+			scaleFactor,
+			scaleFactor,
+			angle * PI / 180,
+			0);
+	}
+	else {
+		al_draw_tinted_scaled_rotated_bitmap(tank->image,
+			al_map_rgba_f(1, 0.5, 0.5, 0.5),
+			0,
+			0,
+			dx,
+			dy,
+			scaleFactor,
+			scaleFactor,
+			angle * PI / 180,
+			0);
+	}
+	
 }
 
 
