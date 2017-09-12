@@ -6,4 +6,7 @@ enum MYKEYS {
 };
 
 
+enum TANK_STATE {
+	NONE, BESHOTED, DESTROY
+};
 #endif

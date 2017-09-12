@@ -11,6 +11,7 @@ struct _Tank{
 	float size;
 	enum MYKEYS direction;
 	struct _Point *point;
+	enum TANK_STATE state;
 };
 
 typedef struct _Tank Tank;
@@ -24,6 +25,7 @@ extern "C" {
 	void movePointTo(Tank* tank, float x, float y);
 	void changePosition(Tank* tank, enum MYKEYS direction);
 	void move(Tank* tank, float speed);
+	void changeBitmap(Tank* tank, ALLEGRO_BITMAP *bitmap);
 #ifdef __cplusplus
 }
 #endif // __cplusplus

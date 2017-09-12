@@ -119,3 +119,8 @@ void move(Tank* tank, float speed){
 
 	}
 }
+
+void changeBitmap(Tank * tank, ALLEGRO_BITMAP * bitmap)
+{
+	tank->image = bitmap;
+}

@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 
-
+	initEnemy();
 	startLoop(&timer, display);
 	return 0;
 }

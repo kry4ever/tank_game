@@ -26,6 +26,7 @@ Tank* getTank(int id, int x, int y, enum MYKEYS direction, const char* name) {
 	Tank* tank = (Tank*)malloc(sizeof(Tank));
 
 	tank->image = bitmap;
+	tank->state = NONE;
 	tank->id = id;
 	tank->x = x;
 	tank->y = y;
