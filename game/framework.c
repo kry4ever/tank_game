@@ -21,6 +21,13 @@ bool init(ALLEGRO_DISPLAY **display) {
     return false;
   }
 
+  if (!al_init_font_addon()) {
+	  fprintf(stderr, "failed to al_init_font_addon!\n");
+	  return false;
+  }
+
+  al_init_ttf_addon();
+
   al_clear_to_color(al_map_rgb(0, 0, 0));
   al_flip_display();
   return true;

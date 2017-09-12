@@ -1,5 +1,5 @@
 
-#define enemySize 10
+#define enemySize 4
 
 #define width  640
 #define height  480

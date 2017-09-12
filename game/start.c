@@ -16,6 +16,9 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 
+	extern bool(*drawFrame)(float, float, enum MYKEYS);
+	extern bool draw(float x, float y, enum MYKEYS direction);
+	drawFrame = draw;
 	initEnemy();
 	startLoop(&timer, display);
 	return 0;

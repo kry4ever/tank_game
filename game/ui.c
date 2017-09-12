@@ -5,11 +5,15 @@
 #include <time.h>
 #include "point.h"
 #include "direction.h"
+#include "allegro5/allegro_font.h"
+#include "allegro5/allegro_ttf.h"
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+	ALLEGRO_FONT *font;
 
 	enum MYKEYS getRandomDirection();
 	bool shot();
@@ -24,6 +28,9 @@ extern "C" {
 			Tank* tank = (Tank*)getTank(i, getRandomPosition(width), getRandomPosition(height), getRandomDirection(), "../res/tank.bmp");
 			enemys[i] = tank;
 		}
+
+		font = al_load_ttf_font("../res/pirulen.ttf", 72, 0);
+		assert(font != NULL);
 	}
 
 	bool draw(float x, float y, enum MYKEYS direction) {
@@ -71,11 +78,24 @@ extern "C" {
 					enemys[i] = NULL;
 				}
 
+				if (inside(tank->point, self)) {
+					extern bool(*drawFrame)(float, float, enum MYKEYS);
+					extern bool drawGameOver(float x, float y, enum MYKEYS direction);
+					drawFrame = drawGameOver;
+				}
+
+
 				drawTank(tank, false);
 			}
 		}
 		al_flip_display();
 		return true;
+	}
+
+
+	bool drawGameOver(float x, float y, enum MYKEYS direction) {
+		al_draw_text(font, al_map_rgb(255, 255, 255), width / 2, (height / 4), ALLEGRO_ALIGN_CENTRE, "GAME OVER");
+		al_flip_display();
 	}
 
 

@@ -98,9 +98,9 @@ void dispatchTimer()
 
 }
 
+bool(*drawFrame)(float, float, enum MYKEYS);
 void dispatchDraw()
 {
 	al_clear_to_color(al_map_rgb(0, 0, 0));
-	extern draw(float, float, enum MYKEYS);
-	draw(x, y, currentDirection);
+	drawFrame(x, y, currentDirection);
 }
